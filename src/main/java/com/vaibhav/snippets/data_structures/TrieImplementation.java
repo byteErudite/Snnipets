@@ -50,6 +50,7 @@ public class TrieImplementation {
         }
 
         public boolean searchString(String str) {
+
             TrieNode trev = root;
             char currentCharacter = str.charAt(0);
             int i = 1;
