@@ -84,11 +84,18 @@ Explanation 2:
         ArrayList<Integer> row1 = new ArrayList<>();
         row1.add(1);
         row1.add(2);
+        row1.add(2);
         ArrayList<Integer> row2 = new ArrayList<>();
         row2.add(3);
         row2.add(4);
+        row2.add(4);
+        ArrayList<Integer> row3 = new ArrayList<>();
+        row3.add(3);
+        row3.add(4);
+        row3.add(4);
         test.add(row1);
         test.add(row2);
+        test.add(row3);
         rotate(test);
         System.out.println(test);
     }
