@@ -18,7 +18,7 @@ public class Anagrams {
 
     Example :
 
-    Input : cat dog god tca
+    Input : act dog god tca
     Output : [[1, 4], [2, 3]]
     cat and tca are anagrams which correspond to index 1 and 4.
 
@@ -29,28 +29,28 @@ public class Anagrams {
     Ordering of the result : You should not change the relative ordering of the words / phrases within the group. Within a group containing A[i] and A[j], A[i] comes before A[j] if i < j.
      */
 
-    public static String sortString(String inputString)
-    {
+    public static String sortString(String inputString) {
         char tempArray[] = inputString.toCharArray();
         Arrays.sort(tempArray);
         return new String(tempArray);
     }
+
     public ArrayList<ArrayList<Integer>> anagrams(final List<String> A) {
         List<String> sortedA = new ArrayList<>();
-        for (int i = 0 ; i< A.size() ; i++) {
+        for (int i = 0; i < A.size(); i++) {
             sortedA.add(sortString(A.get(i)));
         }
         Map<String, List<Integer>> stringByIndices = new HashMap<>();
-        for(int i = 0 ; i< sortedA.size() ; i++) {
+        for (int i = 0; i < sortedA.size(); i++) {
             String currentString = sortedA.get(i);
-            if(stringByIndices.containsKey(currentString)) {
+            if (stringByIndices.containsKey(currentString)) {
                 List<Integer> indices = stringByIndices.get(currentString);
                 indices.add(i + 1);
-                stringByIndices.put(currentString,indices);
+                stringByIndices.put(currentString, indices);
             } else {
                 ArrayList<Integer> indices = new ArrayList<>();
                 indices.add(i + 1);
-                stringByIndices.put(currentString,indices);
+                stringByIndices.put(currentString, indices);
             }
         }
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
@@ -59,7 +59,7 @@ public class Anagrams {
 
         while (stringByIndicesIterator.hasNext()) {
             Map.Entry mapElement
-                    = (Map.Entry)stringByIndicesIterator.next();
+                    = (Map.Entry) stringByIndicesIterator.next();
             ArrayList<Integer> indices = (ArrayList<Integer>) mapElement.getValue();
             result.add(indices);
         }
