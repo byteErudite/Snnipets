@@ -15,7 +15,7 @@ public class CollinearPoints {
 
     2
     You will be given 2 arrays X and Y. Each point is represented by (X[i], Y[i])
-     */
+     */  
 
     public int maxPoints(ArrayList<Integer> a, ArrayList<Integer> b) {
         if(a.size() == 0){
