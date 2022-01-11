@@ -1,4 +1,4 @@
-package com.vaibhav.snippets.design_patterns;
+package com.vaibhav.snippets.design_patterns.creational;
 
 import java.util.Objects;
 
