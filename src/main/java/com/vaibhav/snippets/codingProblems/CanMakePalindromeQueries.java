@@ -1,39 +1,34 @@
 package com.vaibhav.snippets.codingProblems;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class Test1 {
+public class CanMakePalindromeQueries {
+    /*
+    You are given a string s and array queries where queries[i] = [lefti, righti, ki]. We may rearrange the substring
+     s[lefti...righti] for each query and then choose up to ki of them to replace with any lowercase English letter.
 
+    If the substring is possible to be a palindrome string after the operations above, the result of the query is true.
+     Otherwise, the result is false.
+    Return a boolean array answer where answer[i] is the result of the ith query queries[i].
+    Note that each letter is counted individually for replacement, so if, for example s[lefti...righti] = "aaa",
+     and ki = 2, we can only replace two of the letters. Also, note that no query modifies the initial string s.
+----------------------------------------------------------------------------------------------------------------------------
+    Example :
+
+    Input: s = "abcda", queries = [[3,3,0],[1,2,0],[0,3,1],[0,3,2],[0,4,1]]
+    Output: [true,false,false,true,true]
+    Explanation:
+    queries[0]: substring = "d", is palidrome.
+    queries[1]: substring = "bc", is not palidrome.
+    queries[2]: substring = "abcd", is not palidrome after replacing only 1 character.
+    queries[3]: substring = "abcd", could be changed to "abba" which is palidrome.
+     Also this can be changed to "baab" first rearrange it "bacd" then replace "cd" with "ab".
+    queries[4]: substring = "abcda", could be changed to "abcba" which is palidrome.
+     */
     public static void main(String[] args) {
-
-        int[] numbers = {4,7,3,1}; //{3,4,7,1}
-        // 1 + 3 = 4
-        // 4 + 4 + 4 = 12
-        // 8 + 7 + 12 = 27
-        Queue<Integer> heap = new PriorityQueue<>();
-        for( int num : numbers) {
-            heap.add(num);
-        }
-        int minSum = 0;
-
-        while(heap.size() > 2) {
-            int first = heap.poll();
-            int second = heap.poll();
-            int newElement = first + second;
-            minSum = minSum + newElement;
-            heap.add(newElement);
-
-        }
-        for(int val : heap) {
-            minSum = minSum + val;
-        }
-        System.out.println(minSum);
-
         int[][] queries = {{3,3,0},{1,2,0},{0,3,1},{0,3,2},{0,4,1}};//
         String testString = "abcda";
         List<Boolean> result = canMakePaliQueries(testString, queries);
@@ -79,9 +74,9 @@ public class Test1 {
             int[] countAtEnd = oddCharacterCountAtIndex[end];
             int oddCount = 0;
             for(int i = 0 ; i< 26 ; i++) {
-               if ((countAtEnd[i] - countsAtBegin[i])  % 2 != 0)  {
-                   oddCount++;
-               }
+                if ((countAtEnd[i] - countsAtBegin[i])  % 2 != 0)  {
+                    oddCount++;
+                }
             }
             if((Math.ceil(oddCount -1)/2) > replacableCharacterCount) {
                 result.add(false);

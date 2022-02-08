@@ -3,6 +3,9 @@ package com.vaibhav.snippets.codingProblems;
 public class FirstAndLastPositionOfElement {
 
     public static void main(String[] args) {
+        /*
+        Find the begin and ending of target values index in a sorted array
+         */
         FirstAndLastPositionOfElement instance = new FirstAndLastPositionOfElement();
         int[] nums = {5,7,7,8,8,10};
         instance.searchRange(nums, 8);
