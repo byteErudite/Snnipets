@@ -12,14 +12,23 @@ public class Test {
 //        Integer[] firstArray = {2,9,10,19,20,54};
 //        Integer[] secondArray = {3,8,11,15,20,88};
 //        System.out.println(findCommon(Arrays.asList(firstArray), Arrays.asList(secondArray)));
-        String test1 = "Assadrfa";
-        String test2 = "";
-        String test3 = "assgaregre";
-        System.out.println(test1+"->"+canFormPalindrome(test1));
-        System.out.println(test2+"->"+canFormPalindrome(test2));
-        System.out.println(test3+"->"+canFormPalindrome(test3));
-        Test tt = new Test();
-       tt.t();
+//        String test1 = "Assadrfa";
+//        String test2 = "";
+//        String test3 = "assgaregre";
+//        System.out.println(test1+"->"+canFormPalindrome(test1));
+//        System.out.println(test2+"->"+canFormPalindrome(test2));
+//        System.out.println(test3+"->"+canFormPalindrome(test3));
+//        Test tt = new Test();
+//       tt.t();
+       Demo obj = new Demo(20);
+      // updateObj(obj);
+       obj.updateObj(obj);
+        System.out.println(obj.num);
+    }
+
+    public static void updateObj(Demo newObj) {
+        newObj = new Demo();
+        newObj.num = 50;
     }
 
     public void t() {
@@ -74,6 +83,21 @@ public class Test {
     class  B extends  A {
 
 
+    }
+}
+
+class Demo {
+    int num;
+    Demo(int x) {
+        num = x;
+    }
+    Demo() {
+        num=0;
+    }
+
+    public void updateObj(Demo newObj) {
+        newObj = new Demo();
+        newObj.num = 50;
     }
 }
 
