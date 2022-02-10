@@ -77,9 +77,6 @@ Explanation 2:
      */
     public static void main(String[] args) {
         Integer[] arr = {4, 3, 2, 3, 4};
-        //Integer[] arr = {68, 35};
-        //System.out.println(solve(Arrays.asList(arr), 2));
-        //System.out.println(solve(Arrays.asList(arr), 2));
         ArrayList<ArrayList<Integer>> test = new ArrayList<>();
         ArrayList<Integer> row1 = new ArrayList<>();
         row1.add(1);
@@ -99,6 +96,7 @@ Explanation 2:
         rotate(test);
         System.out.println(test);
     }
+
     public static int solve(List<Integer> A, int B) {
         int oddCount = 0;
         int totalSubarraysWithOddSum = 0;
