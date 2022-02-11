@@ -6,26 +6,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
 public class FutureApiImpl {
-    @Autowired
-    RestTemplate restTemplate;
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        FutureApiImpl instance = new FutureApiImpl();
+        instance.callAPI();
     }
 
-    private void callAPI() {
+    private void callAPI() throws ExecutionException, InterruptedException {
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         FutureTask<String> future =
-                new FutureTask<String>(new Callable<String>() {
-                    public String call() {
-                        return null;
-                    }});
+                new FutureTask<String>(() -> call());
+        System.out.println("before executing future");
         executorService.execute(future);
+        System.out.println(future.get());
+        System.out.println("After executing future");
     }
 
     private String call() {
@@ -43,11 +43,13 @@ public class FutureApiImpl {
 //                retrieve().
 //                bodyToMono(Rating.class).block();
 //        return new ResponseEntity<>(Arrays.asList(new MovieData(movie, rating)), HttpStatus.OK);
-            final String CAT_SERVICE_URL = "";
-            ResponseEntity<FactModel> response = restTemplate.getForEntity(CAT_SERVICE_URL , FactModel.class);
-            if (response.getStatusCode().equals(HttpStatus.OK)) {
-                return response.getBody().getFact();
-            }
-            return null;
+        final String CAT_SERVICE_URL = "https://catfact.ninja/fact";
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<FactModel> response = restTemplate.getForEntity(CAT_SERVICE_URL, FactModel.class);
+        if (response.getStatusCode().equals(HttpStatus.OK)) {
+            return response.getBody().getFact();
+        } else {
+            return "No response available";
+        }
     }
 }

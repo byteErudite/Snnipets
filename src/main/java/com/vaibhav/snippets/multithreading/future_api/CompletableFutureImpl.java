@@ -12,9 +12,6 @@ import java.util.concurrent.ExecutionException;
 
 public class CompletableFutureImpl {
 
-    @Autowired
-    RestTemplate restTemplate;
-
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         {
             try {
@@ -26,7 +23,9 @@ public class CompletableFutureImpl {
             }
         }
         CompletableFutureImpl t = new CompletableFutureImpl();
+        System.out.println("Before Api call");
         System.out.println(t.callFactApi());
+        System.out.println("After Api call");
 
 //        List<CompletableFuture<String>> allFutures = new ArrayList<>();
 //        CompletableFuture<FactModel> future = new CompletableFuture<>();
@@ -44,11 +43,18 @@ public class CompletableFutureImpl {
     }
 
     private String callFactApi() {
-        final String CAT_SERVICE_URL = "https://catfact.ninja/fact";
-        ResponseEntity<FactModel> response = restTemplate.getForEntity(CAT_SERVICE_URL, FactModel.class);
-        if (response.getStatusCode().equals(HttpStatus.OK)) {
-            return response.getBody().getFact();
+        try {
+            final String CAT_SERVICE_URL = "https://catfact.ninja/fact";
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<FactModel> response = restTemplate.getForEntity(CAT_SERVICE_URL, FactModel.class);
+            if (response.getStatusCode().equals(HttpStatus.OK)) {
+                return response.getBody().getFact();
+            }
+            return "Failed to fetch API response";
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return "Api call failed";
         }
-        return "test";
+
     }
 }
