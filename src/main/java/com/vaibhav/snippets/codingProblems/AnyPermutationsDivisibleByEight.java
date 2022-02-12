@@ -26,7 +26,7 @@ public class AnyPermutationsDivisibleByEight {
         }
 
 
-        for(int i= 8; i <=992; i=i+8) {
+        for(int i= 8; i <=1000; i=i+8) {
             int num = i;
             Map<String,Integer> charToFreqLocal = new HashMap<>(charToFreq);
             boolean result = true;
