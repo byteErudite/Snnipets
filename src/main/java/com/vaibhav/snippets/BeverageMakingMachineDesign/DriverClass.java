@@ -1,9 +1,5 @@
 package com.vaibhav.snippets.BeverageMakingMachineDesign;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 public class DriverClass {
 
 

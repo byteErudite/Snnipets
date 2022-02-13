@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
-public class Beverage {
+abstract class Beverage {
     String beverageName;
     String beverageType;
     Map<Ingridient,Integer> ingridients;

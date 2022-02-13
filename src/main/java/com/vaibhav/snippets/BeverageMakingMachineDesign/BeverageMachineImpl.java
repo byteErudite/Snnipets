@@ -12,7 +12,7 @@ public class BeverageMachineImpl implements BeverageMachine{
         switch (beverageType) {
             case TEA:
                 System.out.println("Staring to make your tea");
-                Tea tea = getSubTeaType(subType);
+                Beverage tea = getSubTeaType(subType);
                 updateInventory(tea);
                 System.out.println("tea is ready ....");
                 System.out.println(tea.getInfo());
