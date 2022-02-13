@@ -1,4 +1,4 @@
-package com.vaibhav.snippets.BeverageMakingMachineDesign;
+package com.vaibhav.snippets._LLD.BeverageMakingMachineDesign;
 
 import java.sql.Timestamp;
 import java.time.Instant;

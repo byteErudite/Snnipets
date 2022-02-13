@@ -1,4 +1,4 @@
-package com.vaibhav.snippets.BeverageMakingMachineDesign;
+package com.vaibhav.snippets._LLD.BeverageMakingMachineDesign;
 
 abstract class Tea extends Beverage{
 
