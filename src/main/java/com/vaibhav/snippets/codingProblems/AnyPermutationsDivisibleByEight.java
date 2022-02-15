@@ -1,7 +1,10 @@
 package com.vaibhav.snippets.codingProblems;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AnyPermutationsDivisibleByEight {
     /*
@@ -48,4 +51,53 @@ public class AnyPermutationsDivisibleByEight {
         }
         return false;
     }
+
+    public ArrayList<ArrayList<Integer>> levelOrder(TreeNode A) {
+        ArrayList<Pair> all = new ArrayList<>();
+
+        g(A, 0, all);
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        int l = 0;
+        while(true) {
+            ArrayList<Integer> r = (ArrayList<Integer>) all.stream().filter(p -> p.level==l).map(p->p.val).collect(Collectors.toList());
+            if(r.isEmpty()) {
+                break;
+            }
+            result.add(r);
+        }
+        return result;
+    }
+
+    private void g(TreeNode A, int level, ArrayList<Pair> arr) {
+        if(A== null) {
+            return;
+        }
+        if(A.left != null) {
+            arr.add(new Pair(A.left.val, level+1));
+            g(A.left, level+1, arr);
+        }
+        if(A.right != null) {
+            arr.add(new Pair(A.right.val, level+1));
+            g(A.left, level+1, arr);
+        }
+    }
+
+    class Pair {
+        int val;
+        int level;
+        Pair(int val, int level) {
+            this.val=val;
+            this.level=level;
+        }
+    }
+    class TreeNode {
+      int val;
+      TreeNode left;
+      TreeNode right;
+      TreeNode(int x) {
+       val = x;
+       left=null;
+       right=null;
+      }
+  }
 }
