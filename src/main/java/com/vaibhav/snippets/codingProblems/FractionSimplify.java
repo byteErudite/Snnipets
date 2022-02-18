@@ -6,8 +6,6 @@ import java.util.Map;
 import java.util.Set;
 
 public class FractionSimplify {
-
-
     public static void main(String args[]) {
         System.out.println(fractionToDecimal(87, 22));
         System.out.println(fractionToDecimal(-1,-2147483648));

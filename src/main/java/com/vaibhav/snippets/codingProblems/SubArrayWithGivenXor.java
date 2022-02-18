@@ -82,7 +82,14 @@ An Efficient Solution solves the above problem in O(n) time. Let us call the XOR
        xorArr[i] in map by 1.
 5) Return ans.
      */
-    public int solve(ArrayList<Integer> A, int B) {
+
+    public static void main(String[] args) {
+        ArrayList<Integer> A = new ArrayList<>();
+        A.add(4); A.add(2); A.add(2); A.add(6); A.add(4);
+        System.out.println(solve(A, 6));// expect 4
+
+    }
+    public static int solve(ArrayList<Integer> A, int B) {
         if (A.size() == 0) {
             return 0;
         }
@@ -95,20 +102,11 @@ An Efficient Solution solves the above problem in O(n) time. Let us call the XOR
         int result = 0;
         for(int i = 0; i < xorSum.length ; i++) {
             int xorWithTarget = B ^ xorSum[i];
-
             if (xorMap.containsKey(xorWithTarget)) {
                 result = result + xorMap.get(xorWithTarget);
             }
-
-            if (xorSum[i] == B) {
-                result++;
-            }
-
-            if (xorMap.containsKey(xorSum[i])) {
-                xorMap.put(xorSum[i], xorMap.get(xorSum[i]) + 1);
-            } else {
-                xorMap.put(xorSum[i], 1);
-            }
+            if (xorSum[i] == B) {result++;}
+            xorMap.put(xorSum[i], xorMap.getOrDefault(xorSum[i], 0)+1);
         }
         return result;
     }
