@@ -4,10 +4,16 @@ import java.util.StringJoiner;
 
 public class BuilderPattern {
     public static void main(String[] args) {
-        NutritionFacts cocaCola = new NutritionFacts.Builder(240, 8)
-                .calories(100).sodium(35).carbohydrate(27).build();
-        NutritionFacts limca = new NutritionFacts.Builder(240, 8)
-                .calories(50).build();
+        NutritionFacts cocaCola = new NutritionFacts
+                .Builder(240, 8)
+                .calories(100)
+                .sodium(35)
+                .carbohydrate(27)
+                .build();
+        NutritionFacts limca = new NutritionFacts
+                .Builder(240, 8)
+                .calories(50)
+                .build();
         System.out.println("cocaCola : "+cocaCola);
         System.out.println("limca : "+limca);
     }
@@ -59,6 +65,7 @@ class NutritionFacts {
         { sodium = val; return this; }
         public Builder carbohydrate(int val)
         { carbohydrate = val; return this; }
+
         public NutritionFacts build() {
             return new NutritionFacts(this);
         }
