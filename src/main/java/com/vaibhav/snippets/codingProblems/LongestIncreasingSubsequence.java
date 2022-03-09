@@ -1,5 +1,6 @@
 package com.vaibhav.snippets.codingProblems;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -57,6 +58,5 @@ public class LongestIncreasingSubsequence {
             }
         }
         return maxLen;
-
     }
 }
