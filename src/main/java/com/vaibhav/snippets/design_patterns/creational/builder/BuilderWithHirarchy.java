@@ -5,9 +5,9 @@ import java.util.Objects;
 import java.util.Set;
 
 import static com.vaibhav.snippets.design_patterns.creational.builder.NyPizza.Size.SMALL;
-import static com.vaibhav.snippets.design_patterns.creational.builder.Pizza.Topping.HAM;
-import static com.vaibhav.snippets.design_patterns.creational.builder.Pizza.Topping.ONION;
-import static com.vaibhav.snippets.design_patterns.creational.builder.Pizza.Topping.SAUSAGE;
+import static com.vaibhav.snippets.design_patterns.creational.builder.Topping.HAM;
+import static com.vaibhav.snippets.design_patterns.creational.builder.Topping.ONION;
+import static com.vaibhav.snippets.design_patterns.creational.builder.Topping.SAUSAGE;
 
 public class BuilderWithHirarchy {
 
@@ -26,9 +26,9 @@ public class BuilderWithHirarchy {
                 .addTopping(HAM).sauceInside().build();
     }
 }
-
+enum Topping { HAM, MUSHROOM, ONION, PEPPER, SAUSAGE }
 abstract class Pizza {
-    public enum Topping { HAM, MUSHROOM, ONION, PEPPER, SAUSAGE }
+
     final Set<Topping> toppings;
     abstract static class Builder<T extends Builder<T>> {
         EnumSet<Topping> toppings = EnumSet.noneOf(Topping.class);

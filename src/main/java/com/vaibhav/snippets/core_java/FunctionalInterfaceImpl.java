@@ -1,6 +1,8 @@
 package com.vaibhav.snippets.core_java;
 
+import java.sql.Wrapper;
 import java.time.LocalDateTime;
+import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -17,7 +19,7 @@ public class FunctionalInterfaceImpl {
         }
     }
 
-    Predicate<Integer> isPrime = num -> {
+    static Predicate<Integer> isPrime = num -> {
         if (num == 1) {
             return false;
         }
@@ -29,45 +31,75 @@ public class FunctionalInterfaceImpl {
         return true;
     };
 
-    Predicate<Integer> isOdd = num ->  num % 2 != 0;
+    static Predicate<Integer> isOdd = num ->  num % 2 != 0;
 
-    Flying mallardFlying = () -> {
+    static Flying mallardFlying = () -> {
         System.out.println("the mallard duck is flying");
     };
 
+    @FunctionalInterface
+    interface Operation {
+        int of(int value);
+    }
 
     public static void main(String[] args) {
         FunctionalInterfaceImpl t = new FunctionalInterfaceImpl();
-        t.mallardFlying.fly();
-        System.out.println(t.isPrime.and(t.isOdd).test(17));
-        t.isPrime.and(t.isOdd).negate().test(17);
-        t.isPrime.or(t.isOdd).test(17);
+        mallardFlying.fly();
+        System.out.println(isPrime.and(t.isOdd).test(17));
+        isPrime.and(isOdd).negate().test(17);
+        isPrime.or(isOdd).test(17);
+
+
+        Operation square = (int val) -> val*val;
+        int  val = 5;
+        System.out.println("The sqaure of "+val+" is : "+square.of(5));
+
 
         Function< String, Integer > retrieveLen = (str) -> str.length();
         System.out.println(retrieveLen.apply("Ramesh"));
 
-
-        Predicate < Integer > isOdd = (val) -> val % 2 != 0;
+        //-------------------------------------------------------------------------------------------------------------
+        Predicate < Integer > isOdd = (num) -> num % 2 != 0;
         System.out.println(isOdd.test(10));
+        //------------------------------------------------------------------------------------------------------------
 
+
+
+        //------------------------------------------------------------------------------------------------------------
         /*
         A Consumer is a functional interface in JDK 8, which represents an operation that accepts a single input argument and returns no result.
          */
         Consumer< String > consumer = (str) -> System.out.println(str);
         consumer.accept("Ramesh");
+        //------------------------------------------------------------------------------------------------------------
 
+
+
+
+        //------------------------------------------------------------------------------------------------------------
         /*
         The Supplier is a functional interface that represents an operation that takes no argument and returns a result.
          */
-        Supplier<LocalDateTime> supplier = () -> LocalDateTime.now();
-        System.out.println(supplier.get());
+        Supplier<LocalDateTime> localDateTime = () -> LocalDateTime.now();
+        System.out.println(localDateTime.get());
+        //------------------------------------------------------------------------------------------------------------
 
+
+
+
+
+        //------------------------------------------------------------------------------------------------------------
         /*
         The BiFunction interface is a functional interface that represents a function that takes two arguments of different types and produces a result of another type.
 
          */
         BiFunction< Integer, Integer, Integer > addition = (num1, num2) -> (num1 + num2);
         System.out.println(addition.apply(200, 100));
+        //------------------------------------------------------------------------------------------------------------
+
+        BiConsumer<String,String> namePrinter = ( firstName, lastName) -> System.out.println("The full name is : "+firstName+" "+lastName);
+        namePrinter.accept("vaibhav" , "singh");
+
 
     }
 }

@@ -50,11 +50,11 @@ class AccountManager implements AccountFactory {
     @Override
     public Account createAccount(AccountType accountType) {
         if (accountType.equals(AccountType.CURRENT)) {
-            return new CurrentAccount("4%");
+            return new CurrentAccount();
         } else if(accountType.equals(AccountType.SAVING)) {
-            return new SavingAccount("5%");
+            return new SavingAccount();
         } else  if (accountType.equals(AccountType.DEMAT)){
-            return new DematAccount("0%");
+            return new DematAccount();
         } else {
             return null;
         }
@@ -120,17 +120,17 @@ abstract class Account {
 
 class SavingAccount extends Account {
 
-    final String rate;
+    final int rate;
 
 
 
-    public SavingAccount(String rate) {
-        this.rate = rate;
+    public SavingAccount() {
+        this.rate = 5;
     }
 
     @Override
     public void getInfo() {
-        System.out.println("Saving account | interest rate : 5%");
+        System.out.println("Saving account | interest rate :"+this.rate+"%");
         System.out.println(super.toString());
         System.out.println();
     }
@@ -138,29 +138,30 @@ class SavingAccount extends Account {
 
 class CurrentAccount extends Account {
 
-    final String rate;
+    final int rate;
 
     public void getInfo() {
-        System.out.println("Current account | interest rate : 4%");
+        System.out.println("Current account | interest rate : "+this.rate+"%");
         System.out.println(super.toString());
         System.out.println();
     }
-    public CurrentAccount(String rate) {
-        this.rate = rate;
+    public CurrentAccount() {
+        this.rate = 4;
     }
 }
 
 class DematAccount extends Account {
+    final int rate;
 
     public void getInfo() {
-        System.out.println("Demat account | interest rate : 0%");
+        System.out.println("Demat account | interest rate : "+this.rate+"%");
         System.out.println(super.toString());
         System.out.println();
     }
-    final String rate;
 
-    public DematAccount(String rate) {
-        this.rate = rate;
+
+    public DematAccount() {
+        this.rate = 0;
     }
 }
 

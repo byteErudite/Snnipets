@@ -70,4 +70,8 @@ public class Graph {
         System.out.println("-----BFS-----");
         graph.bfs(1);
     }
+
+    private void printResult() {
+
+    }
 }

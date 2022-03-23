@@ -1,6 +1,7 @@
 package com.vaibhav.snippets.codingProblems;
 
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SmallestSubstring {
@@ -12,16 +13,15 @@ public class SmallestSubstring {
         System.out.println(smallestSubstringLength("this is a test string", "tist"));
     }
 
-    private static int smallestSubstringLength(String originalString, String str) {
+    private static int smallestSubstringLength(String input, String searchStr) {
         HashMap<Character, Integer> frequencyMap = new HashMap<>();
-        for(char c : str.toCharArray()) {
+        for(char c : searchStr.toCharArray()) {
             frequencyMap.put(c, frequencyMap.getOrDefault(c, 0)+1);
         }
-        HashMap<Character, Integer> charactersMap = new HashMap<>();
         int i =0,j=0;
         int minLength= Integer.MAX_VALUE;
-        while(i< originalString.length() && j< originalString.length()) {
-            if(hasAllChars(originalString.substring(i,j), frequencyMap)) {
+        while(i< input.length() && j< input.length()) {
+            if (hasAllChars(input.substring(i,j), frequencyMap)) {
                 i++;
                 if (j-i+1 < minLength) {
                     minLength = j-i+1;
@@ -34,17 +34,17 @@ public class SmallestSubstring {
         return minLength;
     }
 
-    private static boolean hasAllChars(String str, HashMap<Character, Integer> frequencyMap) {
+    private static boolean hasAllChars(String str, HashMap<Character, Integer> targetCharFrequency) {
         HashMap<Character, Integer> map = new HashMap<>();
         for(char c : str.toCharArray()) {
             map.put(c, map.getOrDefault(c, 0)+1);
         }
-        AtomicBoolean result = new AtomicBoolean(true);
-        frequencyMap.forEach((key,value)-> {
-            if (map.getOrDefault(key, 0) < value) {
-                result.set(false);
+        for(char key : targetCharFrequency.keySet()) {
+            Integer value = map.get(key);
+            if (Objects.isNull(value) || value < targetCharFrequency.get(key)) {
+                return false;
             }
-        });
-        return result.get();
+        }
+        return true;
     }
 }

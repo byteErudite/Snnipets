@@ -14,8 +14,8 @@ public class ImmutableClassImplementation {
         // change value of employee field in original object assigned to the classes
         company.setComapanyName("newCompany");
 
-        System.out.println("Immutable class field -> "+immutableEmployee.getCompany().getComapanyName());
-        System.out.println("mutable class field -> "+mutableEmployee.getCompany().getComapanyName());
+        System.out.println("Immutable employee company -> "+immutableEmployee.getCompany().getComapanyName());
+        System.out.println("Mutable employee company -> "+mutableEmployee.getCompany().getComapanyName());
     }
 }
 

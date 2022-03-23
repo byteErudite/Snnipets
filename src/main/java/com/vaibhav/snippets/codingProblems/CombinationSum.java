@@ -32,9 +32,9 @@ public class CombinationSum {
             if (producibleCandidates.size() > 0) {
                 for(int producibleCandidate : producibleCandidates) {
                     candidateSet.add(target);
-                    int occurencesOfProducibleCandidate = target / producibleCandidate;
+                    int occurrencesOfProducibleCandidate = target / producibleCandidate;
                     List<Integer> resultSet = new ArrayList<>(values);
-                    while(occurencesOfProducibleCandidate-- > 0) {
+                    while(occurrencesOfProducibleCandidate-- > 0) {
                         resultSet.add(producibleCandidate);
                     }
                     result.add(resultSet);

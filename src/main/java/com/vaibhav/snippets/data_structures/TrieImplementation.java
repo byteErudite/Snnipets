@@ -27,10 +27,10 @@ public class TrieImplementation {
         }
     }
 
-    class TrieStructure {
+    class Trie {
         private TrieNode root;
 
-        TrieStructure() {
+        Trie() {
             root = new TrieNode();
             root.setEnd(false);
         }

@@ -10,6 +10,7 @@ public class BuilderPattern {
                 .sodium(35)
                 .carbohydrate(27)
                 .build();
+
         NutritionFacts limca = new NutritionFacts
                 .Builder(240, 8)
                 .calories(50)
@@ -23,7 +24,7 @@ public class BuilderPattern {
      are large and similar in nature then this technique becomes prone to errors as if the user of the class swaps the
      parameters by mistake that could lead to wrong behaviour.
 
-     Also in a class many a times lot of fields are optional so it really does not makes sense to put in all the
+     Also in a class many a times lot of fields are optional, so it really does not makes sense to put in all the
      variables in constructor as the user will have to provide a basic value or any value even if he is not
      planning to populate that field. So , we can create many constructors with different parameters to provide
      various required combinations of the fields but as the number of fields grow this process becomes inefficient.

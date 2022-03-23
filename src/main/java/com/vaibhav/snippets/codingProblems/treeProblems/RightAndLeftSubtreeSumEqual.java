@@ -26,7 +26,7 @@ public class RightAndLeftSubtreeSumEqual {
         int ls = sum(node.left);
         int rs = sum(node.right);
 
-        if((node.data == ls + rs) && isSumEqual(node.left) != 0 && isSumEqual(node.right) != 0)
+        if ((node.data == ls + rs) && isSumEqual(node.left) != 0 && isSumEqual(node.right) != 0)
         {
             return 1;
         }
