@@ -33,8 +33,17 @@ public class RottenOranges {
         }
     }
 
+    static class Move {
+        int x;
+        int y;
+        Move(int a, int b) {
+            x=a;
+            y=b;
+        }
+    }
 
-        static int dir[][] = {{-1,0},{1,0},{0,1},{0,-1}};
+
+        static Move[] moves = {new Move(-1,0),new Move(1,0),new Move(0,1),new Move(0,-1)};
 
         public static int orangesRotting_(int[][] grid) {
             int row = grid.length;
@@ -56,9 +65,9 @@ public class RottenOranges {
                 Pair p = queue.remove();
                 visited[p.row][p.col]=true;
 
-                for(int dr[] : dir){
-                    int i = p.row+dr[0];
-                    int j = p.col+dr[1];
+                for(Move move : moves){
+                    int i = p.row+move.x;
+                    int j = p.col+move.y;
 
                     if(isValidDir(i,j,grid) && grid[i][j]==1 && !visited[i][j]){
                         grid[i][j]=2;
@@ -73,7 +82,6 @@ public class RottenOranges {
                     if(cols==1) count++;
                 }
             }
-
             return count>0 ? -1 : max;
         }
 
@@ -82,7 +90,6 @@ public class RottenOranges {
                     j<0 || j>=grid[0].length){
                 return false;
             }
-
             return true;
         }
 }
