@@ -12,7 +12,7 @@ public class FirstNonRepeatingCharacter {
     B is formed such that we have to find first non-repeating character each time a character is inserted to the stream
     and append it at the end to B. If no non-repeating character is found then append '#' at the end of B.
 
-    Input 1  = "abadbc"
+    Input 1  = "aabdbc"
     Output 1 = "aabbdd"
 
     Input 2 = "abcabc"

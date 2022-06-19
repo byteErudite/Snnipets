@@ -7,8 +7,8 @@ public class FirstAndLastPositionOfElement {
         Find the begin and ending of target values index in a sorted array
          */
         FirstAndLastPositionOfElement instance = new FirstAndLastPositionOfElement();
-        int[] nums = {5,7,7,8,8,10};
-        instance.searchRange(nums, 8);
+        int[] nums = {5,7,7,7,7,7,7,8,8,10};
+        instance.searchRange(nums, 7);
     }
 
     public int[] searchRange(int[] nums, int target) {
@@ -16,8 +16,9 @@ public class FirstAndLastPositionOfElement {
         result[0] = binarySearchLeftMost(nums, target, 0, nums.length-1);
         if (result[0] == -1) {
             result[1] = -1;
+        } else {
+            result[1] = binarySearchRightMost(nums, target, 0, nums.length-1);
         }
-        result[1] = binarySearchRightMost(nums, target, 0, nums.length-1);
         System.out.println("Begin index : " + result[0]);
         System.out.println("End index : " + result[1]);
         return result;

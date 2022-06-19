@@ -24,9 +24,9 @@ public class Graph {
         visited[startingVertex] = true;
         System.out.println(startingVertex + " ");
 
-        Iterator<Integer> traverser = neighboursOfStartingNode.iterator();
-        while (traverser.hasNext()) {
-            int currentVertexValue = traverser.next();
+        Iterator<Integer> iterator = neighboursOfStartingNode.iterator();
+        while (iterator.hasNext()) {
+            int currentVertexValue = iterator.next();
             if (!visited[currentVertexValue]) {
                 visited[currentVertexValue] = true;
                 traverseDFS(currentVertexValue, visited);

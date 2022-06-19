@@ -2,12 +2,15 @@ package com.vaibhav.snippets.core_java;
 
 import java.sql.Wrapper;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class FunctionalInterfaceImpl {
 
@@ -43,6 +46,11 @@ public class FunctionalInterfaceImpl {
     }
 
     public static void main(String[] args) {
+        List<String> newList = new ArrayList<>();
+        newList.add("test");
+        List<Integer> te = newList.stream().filter(s-> s.length() > 10).map(Integer::parseInt).collect(Collectors.toList());
+        System.out.println(te.isEmpty());
+
         FunctionalInterfaceImpl t = new FunctionalInterfaceImpl();
         mallardFlying.fly();
         System.out.println(isPrime.and(t.isOdd).test(17));
@@ -99,6 +107,7 @@ public class FunctionalInterfaceImpl {
 
         BiConsumer<String,String> namePrinter = ( firstName, lastName) -> System.out.println("The full name is : "+firstName+" "+lastName);
         namePrinter.accept("vaibhav" , "singh");
+
 
 
     }

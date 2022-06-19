@@ -1,9 +1,10 @@
 package com.vaibhav.snippets.codingProblems;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.Map;
+import java.util.function.Predicate;
 
 public class CanMakePalindromeQueries {
     /*
@@ -29,56 +30,74 @@ public class CanMakePalindromeQueries {
     queries[4]: substring = "abcda", could be changed to "abcba" which is palidrome.
      */
     public static void main(String[] args) {
-        int[][] queries = {{3,3,0},{1,2,0},{0,3,1},{0,3,2},{0,4,1}};//
+        int[][] queries = {{3, 3, 0}, {1, 2, 0}, {0, 3, 1}, {0, 3, 2}, {0, 4, 1}};//
         String testString = "abcda";
-        List<Boolean> result = canMakePaliQueries(testString, queries);
+        List<Boolean> result = isPalindromePossible(testString, queries);
         result.stream().forEach(System.out::println);
     }
 
     private static void copyArr(int[] arr1, int[] arr2) {
-        for(int i = 0 ; i< arr1.length ; i++) {
+        for (int i = 0; i < arr1.length; i++) {
             arr1[i] = arr2[i];
         }
     }
 
-    private static int[][]  getCountOfOddCharacterAtEachIndex(char[] arr) {
+    private static int[][] getCountOfOddCharacterAtEachIndex(char[] arr) {
 
         int[][] countAtEachInd = new int[arr.length][26];
-        for(int i =0 ; i< arr.length ; i++) {
-            for(int j = 0 ; j < 26 ; j++) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < 26; j++) {
                 countAtEachInd[i][j] = 0;
             }
         }
-        countAtEachInd[0][((int)arr[0]) - 97] = 1;
-        for(int i =1 ; i< arr.length ; i++) {
-            copyArr(countAtEachInd[i], countAtEachInd[i-1]);
-            countAtEachInd[i][((int)arr[i]) - 97]++;
+        countAtEachInd[0][((int) arr[0]) - 97] = 1;
+        for (int i = 1; i < arr.length; i++) {
+            copyArr(countAtEachInd[i], countAtEachInd[i - 1]);
+            countAtEachInd[i][((int) arr[i]) - 97]++;
         }
         return countAtEachInd;
     }
 
-    public static List<Boolean> canMakePaliQueries(String s, int[][] queries) {
+    private static int[] getOddCharCountAtEachIndex(char[] arr) {
+        Map<Character,Integer> charToCount = new HashMap<>();
+        int[] oddCount = new int[arr.length];
+        oddCount[0] = 1;
+        for(int i =1; i< arr.length; i++) {
+            char val = arr[i];
+            charToCount.put(val, charToCount.getOrDefault(val, 0)+1);
+
+            if (isOdd.test(charToCount.get(val))) {
+                oddCount[i] = oddCount[i-1] + 1;
+            } else {
+                oddCount[i] = oddCount[i-1] - 1;
+            }
+        }
+        return oddCount;
+    }
+
+    public static List<Boolean> isPalindromePossible(String s, int[][] queries) {
         char[] arr = s.toCharArray();
         List<Boolean> result = new ArrayList<>();
         int[][] oddCharacterCountAtIndex = getCountOfOddCharacterAtEachIndex(arr);
-        for(int[] query : queries) {
+        for (int[] query : queries) {
             int begin = query[0];
             int end = query[1];
-            int replacableCharacterCount = query[2];
+            int replaceableCharacterCount = query[2];
             int[] zeroArr = new int[26];
-            for(int i = 0 ; i< 26 ; i++) {
+            for (int i = 0; i < 26; i++) {
                 zeroArr[i] = 0;
             }
 
-            int[] countsAtBegin = begin == 0 ? zeroArr : oddCharacterCountAtIndex[begin-1];
+            int[] countsAtBegin = begin == 0 ? zeroArr : oddCharacterCountAtIndex[begin - 1];
             int[] countAtEnd = oddCharacterCountAtIndex[end];
             int oddCount = 0;
-            for(int i = 0 ; i< 26 ; i++) {
-                if ((countAtEnd[i] - countsAtBegin[i])  % 2 != 0)  {
+            for (int i = 0; i < 26; i++) {
+                int countOfCurrChar = countAtEnd[i] - countsAtBegin[i];
+                if (isOdd.test(countOfCurrChar)) {
                     oddCount++;
                 }
             }
-            if((Math.ceil(oddCount -1)/2) > replacableCharacterCount) {
+            if ((Math.ceil(oddCount - 1) / 2) > replaceableCharacterCount) {
                 result.add(false);
             } else {
                 result.add(true);
@@ -86,4 +105,6 @@ public class CanMakePalindromeQueries {
         }
         return result;
     }
+
+    static Predicate<Integer> isOdd = val -> val % 2 != 0;
 }
