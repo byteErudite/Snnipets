@@ -13,7 +13,7 @@ public class RunnableVsCallable {
 
     /*
     Since the early days of Java, multithreading has been a major aspect of the language. Runnable is the core interface provided
-     for representing multi-threaded tasks and Callable is an improved version of Runnable that was added in Java 1.5.
+     for representing multithreaded tasks and Callable is an improved version of Runnable that was added in Java 1.5.
     Both interfaces are designed to represent a task that can be executed by multiple threads. Runnable tasks can be run using the
      Thread class or ExecutorService whereas Callables can be run only using the latter.
      */
