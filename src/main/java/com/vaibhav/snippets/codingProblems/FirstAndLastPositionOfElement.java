@@ -1,5 +1,14 @@
 package com.vaibhav.snippets.codingProblems;
 
+import org.yaml.snakeyaml.util.ArrayUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class FirstAndLastPositionOfElement {
 
     public static void main(String[] args) {
@@ -9,6 +18,8 @@ public class FirstAndLastPositionOfElement {
         FirstAndLastPositionOfElement instance = new FirstAndLastPositionOfElement();
         int[] nums = {5,7,7,7,7,7,7,8,8,10};
         instance.searchRange(nums, 7);
+       // List<List<Integer>> finalResult = new ArrayList<>();
+      //  finalResult.addAll(IntStream.of(new int[]{}).boxed().collect(Collectors.toCollection(ArrayList::new));)
     }
 
     public int[] searchRange(int[] nums, int target) {

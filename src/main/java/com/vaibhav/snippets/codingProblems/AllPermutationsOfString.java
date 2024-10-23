@@ -3,7 +3,8 @@ package com.vaibhav.snippets.codingProblems;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllPermutationsOfString {
+public class
+AllPermutationsOfString {
 
     public static void main(String[] args) {
         String testString = "ABC";

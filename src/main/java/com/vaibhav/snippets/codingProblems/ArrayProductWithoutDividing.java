@@ -1,6 +1,8 @@
 package com.vaibhav.snippets.codingProblems;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ArrayProductWithoutDividing {
 
@@ -9,6 +11,9 @@ public class ArrayProductWithoutDividing {
      to the product of all the elements of arr[] except arr[i]. Solve it without division operator in O(n) time.
      */
     public static void main(String[] args) {
+
+        Map<Character, Integer> test = new HashMap<>();
+
         int[] input = {10, 3, 5, 6, 2};
         Arrays.stream(getProductArray(input)).forEach(System.out::println);
     }
